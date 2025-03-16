@@ -1,10 +1,11 @@
 import streamlit as st
+from datetime import datetime
 
 def display_sidebar():
     with st.sidebar:
         if st.button("새 대화 시작"):
             st.session_state['chat_count'] += 1
-            new_chat_name = f"대화{st.session_state['chat_count']}"
+            new_chat_name = f"{datetime.now().strftime('%Y.%m.%d')}\n 대화{st.session_state['chat_count']}"
             st.session_state['current_chat'] = new_chat_name
             st.session_state['chats'][new_chat_name] = []
 
