@@ -5,15 +5,9 @@
     font-style: normal;
 }
 
-:root {
-    --maincolor: yellow;
-}
-
-/* 기본 스타일 */
-body {
-    font-family: 'Pretendard-Regular', sans-serif;
-    background-color: #f7f7f7;
-    padding: 20px;
+/* 기본 폰트 설정 */
+div, p, #streamlit-chatbot, #bdacffe9, li {
+    font-family: 'Pretendard-Regular', sans-serif !important;
 }
 
 /* 사용자 메시지 스타일 (우측 말풍선) */
@@ -25,7 +19,7 @@ body {
     margin-bottom: 10px;
     align-self: flex-end;
     position: relative;
-    word-wrap: break-word;
+    word-wrap: break-word; 
 }
 
 /* AI 메시지 스타일 (좌측 말풍선) */
@@ -44,6 +38,4 @@ body {
 .chat-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background-color: var(--maincolor);
 }
