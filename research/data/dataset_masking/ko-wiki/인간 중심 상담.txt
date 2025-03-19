@@ -1,0 +1,42 @@
+인간 중심 치료(PCT, Person-centered therapy)로도 불리는 인간 중심 상담(person-centered counseling)은 미국의 심리학자 칼 로저스(Carl Rogers)가 1940년대 초에 개발한 상담심리학의 한 방법이다. 이 상담(counseling)은 개발 이래 1980년대까지 이어져왔다. 인간 중심 심리치료(person-centered psychotherapy), 인간 중심 상담(person-centered counseling), 내담자 중심 치료(client-centered therapy) 로저스 심리치료(Rogerian psychotherapy) 등으로도 불리는 인본주의 심리학(Humanistic psychology)이다.
+이 치료는 "성장과 성취를 향한 내재적 경향(an inbuilt proclivity toward growth and fulfillment)"이라는 자기실현경향성(self-actualizing tendency)을 강화하는 것을 목표로 한다. 이는 수용(acceptance) 혹은 무조건적 긍정적 존중(unconditional positive regard), 치료자의 일치성(therapist congruence) 혹은 진실성(genuineness), 공감적 이해(empathic understanding)를 통해서 진행된다.
+
+필요조건과 충분조건
+로저스는 긍정적 변화에 필요한 6가지 필요조건과 충분조건이 있다고 하였다.:142–143
+
+커운슬러(상당자)-내담자 심리적 접촉(counselor–client psychological contact) : 상담자와 내담자(클라이언트)는 관계를 형성해야 하며, 그 관계를 통하여 각자 서로를 인식하는 것이 중요하다.
+내담자 불일치(Client incongruence) : 내담자가 경험한 것과 알고 있는 것(awareness) 사이에 불일치가 존재해야 한다.
+상담자(카운슬러)의 일치성 혹은 진실성(counselor congruence, or genuineness) : 상담자는 치료적 관계(therapeutic relationship)에 걸맞게(congruent) 된다. 상담자는 깊이 관여해 있으나, 상담자와 내담자는 행동을 취하고 있지는 않다. 관계를 활성화하는 데 있어, 이들은 자신의 경험을 바탕으로 할 수 있다.(자기개방, self-disclosure)
+상담자(카운슬러)의 무조건적 긍정적 존중(관심)(counselor unconditional positive regard) : 상담자는 무조건적으로 어떤 판단이나 찬반 의사 없이 내담자를 있는 그대로 수용한다. 이로 인해 내담자의 자존감(self-regard)이 높아지면서, 내담자의 자기가치의식(view of self-worth)이 뒤틀리거나 거부된 경험에 대하여 알아가기 시작한다.
+상담자(카운슬러)의 공감적 이해(counselor empathic understanding) : 상담자는 내담자가 자신의 행동지침으로 참조하는 내적틀(internal frame of reference)에 대하여 공감적 이해를 경험하게 된다. 상담자가 내담자의 마음을 제대로 공감하게 되면, 내담자에 대한 상담자의 무조건적 존중이 진심이라는 것을 내담자가 믿게 된다.
+내담자 인지(Client perception) : 내담자는 상담자가 무조건적 존중(관심)과 공감적 이해를 보인다는 것을 최소한이라도 감지하게 된다.
+
+핵심조건
+성공적인 결과형성을 위한 가장 중요한 요소는 상담자(counselor)가 내담자에게 보이는 태도로 결정되는 관계의 분위기이다. 상담자(counselor)의 태도는 치료자에게 맞춰진 세 조건으로 결정되는데, 이를 핵심조건(core conditions)이라고도 한다. 위의 3,4,5번에 해당한다.
+
+진실성(Congruence) : 상담자(counselor)-내담자(클라이언트)관계가 사회에서 만난 형식적인 사이로서가 아니라, 인간 대 인간으로서  내담자와 허심탄회하게 관계를 형성하려는 의지
+무조건적 긍정적 존중(관심)(Unconditional positive regard) : 상담자(counselor)는 내담자에게 반대하는 감정이나 행동 혹은 성격을 내보이지 않으면서도 중간에 말을 끊고 끼어들거나 판단하거나 충고하지 않고 주의 깊게 듣고자 수용과 포상을 제공한다.
+공감(Empathy) : 상담자(counselor)는 내담자의 관점을 이해하고 진가를 알기 파악하기 위하여 내담자가 원하는 것을 같이 이야기한다.
+
+무조건적인 긍정적 존중
+칼 로저스에 따르면 인간중심상담의 주요원리는 무조건적인 긍정적 존중(UPR,Unconditional Positive Regard)으로 언급되고있다.
+
+The central hypothesis of this approach can be briefly stated. It is that the individual has within him or her self vast resources for self-understanding, for altering her or his self-concept, attitudes, and self-directed behavior—and that these resources can be tapped if only a definable climate of facilitative psychological attitudes can be provided.
+'이 접근방식의 중심 가설은 간단히 언급할 수 있다. 그것은 개인은 자기 이해, 자기 개념, 태도 및 자기 주도적 행동을 변화시키기 위한 방대한 자원을 자기 안에 가지고 있으며, 오직 촉진적인 심리적인 태도의 확정적인 풍토가 제공될 때 이러한 자원을 이용할 수 있다는 것이다.'
+
+인본주의 심리학
+인간 중심 상담은 심리학에서 인간의 기본적인 존재성에 관심을 갖는 심리학으로 심리학이 단순한 행동 과학이 아니라 인간성의 과학이어야 한다는 입장에서, 종전에 과학적인 방법 때문에 경시되었던 사랑ㆍ자아실현ㆍ자아ㆍ가치 추구성ㆍ책임감 따위를 중시한다. 이러한 맥락에서 인간 중심 상담은 '인본주의 심리학'(人本主義心理學)으로 인용하는 것이 보다 더 자주 선호되곤 한다.
+칼 로저스는 인본주의 심리학적 접근에서 진정성(genuineness), 공감(Empathy), 수용(acceptance)의 3가지를 필수적이면서도 필요충분한 주요 핵심조건으로 제시하고있다.
+이러한 인본주의적 접근은 자아가 누군가로부터 받은 마음의 상처뿐만아니라 누군가에게 자신을 어떠한 모습으로 보여주는 과정에서 발생할 수 있는 부수적인 피해로서 심리적 손상이 자아에 입혀지는 경우처럼 보다 깊은 인간적 이해를 전제하고 이를 추구한다고 할 수 있다. 이것은 부모와 자녀의 관계를 예로 들면  부모는 자녀가 성장하는데 도움을 제공했다는 사실로부터 겸손해질 필요성이 있으며 따라서 부모는 자녀가 성숙해지면서 점차 부모자신의 도움없이 하나의 독립된 인격체로 성장하고있다는 사실에 보다 주목해야 한다는 것이다.
+
+인간의 존엄성과 윤리적 사명
+인간존엄성은 철학,법과학,심리학 등에서 인간이 인간이기 때문에 가지는 부정하거나 범할 수 없는 고상한 성질있다는것을 가리킨다. 아무리 흉악한 인간이라도 그 죄를 뉘우치고 선한 사람이 될 수 있는 가능성을 지니고 있기에 그의 존엄성이 부인되거나 거부되어서는 안 된다는 점을 들수있다. 이러한 인간의 존엄성은 윤리의식을 고취하는 주요한 축을 제공한다. 이러한 맥락에서 인간의 기본적인 존재성에 관심을 갖는 인간중심상담이나 인본주의심리학은  단순한 행동 과학이 아니라 인간성의 과학이어야 한다는 입장에서, 종전에 과학적인 방법 때문에 경시되었던 사랑ㆍ자아실현ㆍ자아ㆍ가치 추구성ㆍ책임감 따위를 중시한다.
+
+같이 보기
+심리치료
+인본주의
+이야기 상담
+칼 로저스
+
+
+== 각주 ==
