@@ -46,4 +46,4 @@ def save_wiki_page(n, folder):
         print(f"[O] {title} : {filename} ({len(page.text)})")
 
 if __name__ == '__main__':
-    save_wiki_page(100, "./ko-wiki")
+    save_wiki_page(10, "./ko-wiki")
