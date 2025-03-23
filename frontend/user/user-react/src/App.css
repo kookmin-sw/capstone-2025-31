@@ -1,19 +1,42 @@
-/* 전체 컨테이너 스타일 */
-.app-container {
-  display: flex;
-  height: 100vh;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-/* 사이드바가 왼쪽에 고정되도록 설정 */
-.main-content {
-  margin-left: 250px; /* 사이드바 크기만큼 공간을 띄워줍니다 */
-  padding: 20px;
-  width: calc(100% - 250px); /* 사이드바를 제외한 나머지 공간 */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 60px; /* 작은 화면에서는 사이드바가 좁아짐 */
-    width: 100%;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
