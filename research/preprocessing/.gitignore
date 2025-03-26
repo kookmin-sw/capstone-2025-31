@@ -1,2 +1,4 @@
 result/
 *.pyc
+sentencepiece/
+ko_wiki_text.txt
