@@ -3,7 +3,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # LLM 모델 설정
-llm = ChatOllama(model="EEVE-Korean-10.8B:latest")
+llm = ChatOllama(model="EXAONE-3.5-7.8B-Instruct-Q8_0:latest")
 
 # Chatbot의 시스템 메시지 설정
 prompt = ChatPromptTemplate.from_messages(
@@ -17,16 +17,6 @@ prompt = ChatPromptTemplate.from_messages(
         MessagesPlaceholder(variable_name="messages")
     ]
 )
-
-rag_prompt = ChatPromptTemplate.from_template("""
-    다음 문맥을 기반으로 질문에 답변하세요.
-
-    문맥: {context}
-
-    질문: {question}
-
-    질문과 관련된 내용만 간략히 제공하세요. 민감하거나 무관한 정보는 제외하세요.
-""")
 
 # Chain : 여러 처리 단계를 연결하여 하나의 흐름으로 만드는 구조.
 # 프롬프트 -> LLM -> 출력
