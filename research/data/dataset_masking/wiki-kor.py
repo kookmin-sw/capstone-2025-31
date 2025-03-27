@@ -39,10 +39,11 @@ def save_wiki_page(n, folder):
             print(f"[X] {title} : Too short ({len(page.text)})")
             continue
         filename = f"{folder}/{title}.txt"
+        filename = filename.replace(" ", "-")
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(page.text)
         saved_cnt += 1
         print(f"[O] {title} : {filename} ({len(page.text)})")
 
 if __name__ == '__main__':
-    save_wiki_page(100, "./ko-wiki")
+    save_wiki_page(10, "./ko-wiki")
