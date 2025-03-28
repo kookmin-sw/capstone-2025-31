@@ -25,5 +25,5 @@ def convert_klue_t5(json_path, out_csv="t5_train.csv", threshold=4.0):
             writer.writerow([input_text, label])
 
 if __name__ == "__main__":
-    convert_klue_t5("../fine-tuning-data/KLUE-sts/klue-sts-v1.1_train.json", out_csv="t5_train.csv", threshold=3.0)
+    convert_klue_t5("../fine-tuning-data/KLUE-sts/klue-sts-v1.1_dev.json", out_csv="t5_dev.csv", threshold=3.0)
     
