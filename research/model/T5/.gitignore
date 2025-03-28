@@ -1,0 +1,4 @@
+logs/
+model/KLUE_model
+result/
+train_data/
