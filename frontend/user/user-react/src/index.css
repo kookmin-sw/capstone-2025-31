@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-body, button {
+body, button, textarea {
   margin: 0;
   font-family: 'Pretendard-Regular'
 }

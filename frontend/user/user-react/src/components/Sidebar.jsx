@@ -1,11 +1,9 @@
 //사이드바 관리 컴포넌트
 
 import { useState } from "react";
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // 사이드바 아이콘
 import '../styles/Sidebar.css';
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true); // 사이드바 열림(true), 닫힘(false)
+const Sidebar = ({isOpen}) => {
   const [prevChat, setPrevChat] = useState([]); // 이전 대화 목록 저장
   const [isModalOpen, setIsModalOpen] = useState(false); // info modal창 상태
 
@@ -19,11 +17,6 @@ const Sidebar = () => {
     setPrevChat([newChat, ...prevChat]);
   }
 
-  // 사이드바 열기/닫기 토글
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
   // 모달 열기/닫기 핸들러
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,16 +28,12 @@ const Sidebar = () => {
   
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-      {/* 사이드바 토글 버튼 */}
-      <button onClick={toggleSidebar} className="toggle-button">
-          {isOpen ? <FiChevronLeft /> : <FiChevronRight />}
-      </button>
       
       {/* 새 대화 생성 버튼 */}
       <button className="new-conversation" onClick={createNewChat}>새 대화 생성</button>
 
       {/* 이전 대화 목록 */}
-      <h3 style={{ fontSize: "20px", marginTop: "20px" }}>이전 대화</h3>
+      <h3 style={{ fontSize: "20px", marginTop: "20px", marginBottom: "10px" }}>이전 대화</h3>
       <div className="conversation-container">
         <ul className="conversation-list">
           {prevChat.map((conversation) => (
