@@ -1,0 +1,88 @@
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 40px;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 800px;
+  flex-wrap: wrap;
+}
+
+.chat-input textarea {
+  flex: 1;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  resize: none;
+  overflow: hidden;
+  height: 20px;
+}
+
+.chat-input label {
+  padding-top: 3px;
+  padding-left: 15px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding-right: 15px;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  color: #888;
+}
+
+/* 파일 목록 스타일 */
+.file-list {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+/* 개별 파일 스타일 */
+.file-preview {
+  display: flex;
+  align-items: center;
+  background: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 5px;
+  max-width: 250px;
+}
+
+.file-name {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-remove {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.file-remove:hover {
+  color: darkred;
+}
+
+/* 드래그 앤 드롭 시 효과 */
+.chat-input.dragging {
+  background-color: #d9edf7;
+  border: 2px dashed #007bff;
+}
