@@ -3,7 +3,8 @@ preprocessing.py : 전처리 함수를 정의한 파일
 - 최신화 : 2025.03.26
 '''
 import sentencepiece as spm
-import os, kss
+import os
+import kss
 
 # txt 파일 불러오는 함수
 def read_text(file_path):
