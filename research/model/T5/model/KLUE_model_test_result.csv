@@ -1,0 +1,520 @@
+target_text,predict_text,label
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,1,
+not similar,not similar,1
+not similar,1,
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,1,
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,0,
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,0,
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,1,
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+similar,not similar,0
+similar,not similar,0
+not similar,not similar,1
+similar,not similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,0,
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,1,
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+similar,not similar,0
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,1,
+not similar,0,
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+not similar,1,
+not similar,not similar,1
+not similar,1,
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,not similar,0
+similar,not similar,0
+similar,not similar,0
+not similar,not similar,1
+not similar,0,
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,0,
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+not similar,1,
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,0,
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,similar,1
+not similar,1,
+not similar,not similar,1
+similar,not similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,not similar,1
+not similar,1,
+similar,not similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,not similar,0
+similar,not similar,0
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+similar,not similar,0
+similar,not similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,1,
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+similar,similar,1
+similar,not similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,0,
+similar,similar,1
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+similar,not similar,0
+not similar,similar,0
+similar,similar,1
+not similar,not similar,1
+not similar,similar,0
+not similar,not similar,1
+similar,similar,1
+similar,similar,1
+similar,similar,1
+not similar,not similar,1
+similar,not similar,0
+similar,similar,1
+not similar,1,
+not similar,not similar,1
+not similar,similar,0
+similar,not similar,0
+not similar,not similar,1
+not similar,similar,0
+not similar,similar,0
+similar,similar,1
+similar,not similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,similar,0
+not similar,not similar,1
+not similar,similar,0
