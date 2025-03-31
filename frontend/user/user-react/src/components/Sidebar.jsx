@@ -3,9 +3,8 @@
 import { useState } from "react";
 import '../styles/Sidebar.css';
 
-const Sidebar = ({isOpen}) => {
+const Sidebar = ({isOpen, openModal}) => {
   const [prevChat, setPrevChat] = useState([]); // 이전 대화 목록 저장
-  const [isModalOpen, setIsModalOpen] = useState(false); // info modal창 상태
 
   // 새 대화 생성
   const createNewChat = () => {
@@ -16,15 +15,6 @@ const Sidebar = ({isOpen}) => {
     };
     setPrevChat([newChat, ...prevChat]);
   }
-
-  // 모달 열기/닫기 핸들러
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -46,18 +36,6 @@ const Sidebar = ({isOpen}) => {
 
       {/* info 모달 버튼 */}
       <div className="info" onClick={openModal}>?</div>
-      {/* 모달 창 */}
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>정보</h2>
-            <p>조직 : 국민대학교</p>
-            <p>관리자 정보 : VIGILANT</p>
-            <p>ver 1.0</p>
-            <button className="close-button" onClick={closeModal}>닫기</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
