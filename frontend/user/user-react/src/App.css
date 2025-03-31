@@ -1,3 +1,7 @@
 .sidebar.open + .chat-container {
   transform: translateX(125px); 
 }
+
+.sidebar.closed + .chat-container {
+  transform: translateX(1px); 
+}
