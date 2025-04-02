@@ -1,1 +1,16 @@
 __pycache__
+
+# research
+research/data/namu/*
+research/data/fine-tuning-data/KLUE-sts/
+
+research/model/T5/logs/
+research/model/T5/model/KLUE_model
+research/model/T5/result/
+research/model/T5/train_data/
+
+research/preprocessing/result/
+
+# frontend
+
+# backend
