@@ -25,24 +25,17 @@ def word_preprocessing(data_dict, window_size=10, slide=1):
         text = delete_newline(data_dict[doc])
         words = text.split()
 
-        # 미만인거 그냥 리턴
+        # 예외 처리
         if len(words) < window_size:
             result_dict[doc].append(text)
             continue
 
+        # 슬라이딩 윈도우 적용
         for i in range(0, len(words), slide):
             window = words[i:i+window_size]
             if len(window) == window_size:
                 sentence = ' '.join(window)
                 result_dict[doc].append(sentence)
-
-        # # 나머지 단어 청크 추가
-        # last = (len(words) - window_size) % slide
-        # if last != 0:
-        #     window = words[-window_size:]
-        #     sentence = ' '.join(window)
-        #     if sentence not in result_dict[doc]:
-        #         result_dict[doc].append(sentence)
 
     return result_dict
 
