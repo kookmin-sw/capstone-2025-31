@@ -1,0 +1,40 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: fixed;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f8f8f8;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.new-chat-button,
+.menu-button,
+.help,
+.user-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.menu-button {
+  margin-right: 10px;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 18px;
+}
