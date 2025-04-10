@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import ChatInput from './ChatInput';
 import '../styles/ChatContainer.css';
 
-const ChatContainer = () => {
+const ChatContainer = ({ currentChatId, prevChat, addMessageToChat }) => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null); // 메시지 끝을 가리킬 ref
 
@@ -62,13 +62,22 @@ const ChatContainer = () => {
       });
     }
 
-    // 한 번에 메시지 추가
-    setMessages((prevMessages) => [...prevMessages, ...newMessages]);
+    // 현재 선택된 대화에 메시지 추가
+    if (currentChatId) {
+      newMessages.forEach((msg) => addMessageToChat(currentChatId, msg));
+    }
   };
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]); // 메시지가 변경될 때마다 실행
+
+  useEffect(() => {
+    const chat = prevChat.find((chat) => chat.id === currentChatId);
+    if (chat) {
+      setMessages(chat.messages);
+    }
+  }, [currentChatId, prevChat]);
 
   return (
     <div className={`chat-container ${messages.length === 0 ? "empty" : ""}`}>
