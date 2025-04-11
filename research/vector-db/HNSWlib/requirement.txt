@@ -1,4 +1,0 @@
-hnswlib
-numpy
-sentence_transformers
-scikit-learn

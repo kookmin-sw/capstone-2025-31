@@ -1,3 +1,0 @@
-annoy
-numpy
-sentence_transformers

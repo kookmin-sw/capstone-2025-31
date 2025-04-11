@@ -1,3 +1,0 @@
-faiss-cpu
-numpy
-sentence_transformers
