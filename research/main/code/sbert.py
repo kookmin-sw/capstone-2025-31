@@ -4,10 +4,10 @@ import preprocessing as pre
 import os, pickle, torch
 
 default_options = {
-    "sliding_window_size" : 10,
+    "sliding_window_size" : 35,
     "slide" : 1,
-    "threshold1" : 0.85,
-    "threshold2" : 0.90,
+    "threshold1" : 0.85, # -1 ~ 1
+    "threshold2" : 90, # %
 }
 
 def encode_confidential_file(model, confidential_file_path, enc_confidential_path, options=default_options):
@@ -20,13 +20,12 @@ def encode_confidential_file(model, confidential_file_path, enc_confidential_pat
         file_path = f"{confidential_file_path}/{file_name}"
         with open(file_path, "r", encoding="utf-8") as f:
             confidential_file = f.read()
-        pre_confidential_files_dict[file_name] = pre.word_sliding_window(confidential_file, options["sliding_window_size"], options["slide"])
+        pre_confidential_files_dict[file_name] = pre.word_sliding_window(confidential_file, window_size=options["sliding_window_size"], slide=options["slide"])
     
     # Encode - Confidential files & Encoding
     enc_confidential_files_dict = {}
     for file_name in confidential_file_list:
         confidential_embeddings = model.encode(pre_confidential_files_dict[file_name], convert_to_tensor=True, normalize_embeddings=True)
-        print(len(confidential_embeddings))
         enc_confidential_files_dict[file_name] = confidential_embeddings
     
     # Output - Save & Print
@@ -40,7 +39,7 @@ def pairwise_predict(enc_query_list, cal_result, threshold=0.85):
     # Processing - Predict
     predict_result = {}
     for file_name, cosine_sim in cal_result.items():
-        sim_cnt = (cosine_sim > threshold).any(dim=1).sum().item()
+        sim_cnt = (cosine_sim >= threshold).sum(dim=1).gt(0).sum().item()
         sim_ratio = round(sim_cnt / len(enc_query_list) * 100, 2)
         predict_result[file_name] = {"count" : sim_cnt, "ratio" : sim_ratio}
     
@@ -60,10 +59,10 @@ def pairwise_check(model, confidential_file_path, enc_confidential_path, query_t
     
     # Processing - Confidential & Query
     if not os.path.exists(f"{enc_confidential_path}/enc_confidential_files_dict.pkl"):
-        encode_confidential_file(confidential_file_path, enc_confidential_path, options, model=model)
+        encode_confidential_file(model, confidential_file_path, enc_confidential_path, options)
     with open(f"{enc_confidential_path}/enc_confidential_files_dict.pkl", "rb") as f:
         enc_confidential_files_dict = pickle.load(f)
-    pre_query_list = pre.word_sliding_window(query_file, options["sliding_window_size"], options["slide"])
+    pre_query_list = pre.word_sliding_window(query_file, window_size=options["sliding_window_size"], slide=options["slide"])
     enc_query_list = model.encode(pre_query_list, convert_to_tensor=True, normalize_embeddings=True)
     
     # Calculate Similarity - Cosine Similarity
@@ -72,7 +71,7 @@ def pairwise_check(model, confidential_file_path, enc_confidential_path, query_t
     enc_query_list = enc_query_list.to(device)
     for file_name, confidential_embeddings in enc_confidential_files_dict.items():
         confidential_embeddings = confidential_embeddings.to(device)
-        cosine_sim = torch.matmul(enc_query_list, confidential_embeddings.T)
+        cosine_sim = torch.mm(enc_query_list, confidential_embeddings.T)
         cal_result[file_name] = cosine_sim.cpu()
     
     # Predict - 2 Threshold
