@@ -11,8 +11,7 @@ html, body {
 }
 
 .admin-layout {
-  min-width: 1200px;    /* 최소 폭 유지 */
-  width: 100%;          /* 전체 화면 꽉 채움 */
+  width: 1200px;
   margin: 0 auto;
   padding: 1rem;
   display: flex;
@@ -20,7 +19,6 @@ html, body {
   gap: 1rem;
   box-sizing: border-box;
 }
-
 
 .top-row,
 .bottom-row {

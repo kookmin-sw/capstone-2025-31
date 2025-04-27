@@ -4,6 +4,7 @@ import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tool
 import { format, parseISO, subDays, eachDayOfInterval } from "date-fns";
 
 function AdminPage() {
+
   const detectedData = [
     { 시간: "12:00", 문서명: "문서 1" },
     { 시간: "13:00", 문서명: "문서 2" },
@@ -22,49 +23,15 @@ function AdminPage() {
   const today = new Date();
   const [endDate, setEndDate] = useState(format(today, "yyyy-MM-dd"));
   const [chartData, setChartData] = useState([]);
+
   const [selectedDocument, setSelectedDocument] = useState("문서를 선택하세요");
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState([
+    { name: "예시문서 1.pdf", status: "green", favorite: false },
+    { name: "예시문서 2.txt", status: "red", favorite: true }
+  ]);
 
-  useEffect(() => {
-    fetchUploadedDocuments();
-  }, []);
-
-  const fetchUploadedDocuments = async () => {
-    try{
-      const res = await fetch("http://localhost:1234/files");
-      const files = await res.json();
-      const newDocs = files.map((file) => ({
-        name: file,
-        status: "green",
-        favorite: false,
-      }));
-      setDocuments(newDocs);
-    } 
-    
-    catch(err){
-      console.error("문서 목록 가져오기 실패:", err);
-    }
-  };
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try{
-      await fetch("http://localhost:1234/upload", {
-        method: "POST",
-        body: formData
-      });
-      fetchUploadedDocuments();
-    } 
-    catch (err){
-      console.error("업로드 실패:", err);
-    }
-  };
+  
 
   const handleSelect = (name) => setSelectedDocument(name);
 
@@ -76,50 +43,22 @@ function AdminPage() {
     );
   };
 
-  const filteredDocuments = documents.sort((a, b) =>
-    a.favorite === b.favorite ? 0 : a.favorite ? -1 : 1
-  );
+  const filteredDocuments = documents
+    .sort((a, b) => (a.favorite === b.favorite ? 0 : a.favorite ? -1 : 1));
 
   const toggleDetail = (idx) => {
     setExpandedIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const handleDelete = async () => {
-    if(!selectedDocument || selectedDocument === "문서를 선택하세요") {
-      alert('삭제할 문서를 선택하세요.');
-      return;
-    }
-
-    if(!window.confirm(`${selectedDocument} 파일을 삭제하시겠습니까?`)) {
-      return;
-    }
-
-    try{
-      await fetch("http://localhost:1234/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ filename: selectedDocument }),
-      });
-      alert("파일이 삭제되었습니다.");
-      setSelectedDocument("문서를 선택하세요");
-      fetchUploadedDocuments();
-    } 
-    catch (err){
-      console.error("파일 삭제 실패:", err);
-      alert("파일 삭제에 실패했습니다.");
-    }
-  };
-
+  //일자별 탐지 통계(차트)
   useEffect(() => {
     const end = parseISO(endDate);
     const start = subDays(end, 6);
-    const days = eachDayOfInterval({ start, end });
 
+    const days = eachDayOfInterval({ start, end });
     const data = days.map((date) => ({
       label: format(date, "MM/dd"),
-      value: Math.floor(Math.random() * 100),
+      value: Math.floor(Math.random() * 100) // 임시 랜덤 데이터
     }));
 
     setChartData(data);
@@ -149,6 +88,7 @@ function AdminPage() {
           </ResponsiveContainer>
         </div>
 
+        {/* 오늘 탐지된 횟수 */}
         <div className="top-section today-detection-section">
           <h2>오늘 탐지된 횟수</h2>
           <div className="count">5회 검색 탐지</div>
@@ -171,11 +111,12 @@ function AdminPage() {
           </table>
         </div>
       </div>
-
+      
+      {/* 기업 문서 관리 */}
       <div className="bottom-row">
         <div className="left-section">
           <h2>기업 문서 관리</h2>
-          <input type="file" accept=".pdf,.docx,.txt" onChange={handleFileUpload} />
+          <input type="file" accept=".pdf,.docx,.txt" />
           <input type="text" placeholder="문서 검색" />
           <ul>
             {filteredDocuments.map((doc) => (
@@ -189,11 +130,12 @@ function AdminPage() {
             ))}
           </ul>
         </div>
-
+        
+        {/* 문서 상세 사항 */}
         <div className="right-section">
           <div className="section-header">
             <h3>문서 상세 사항</h3>
-            <button className="delete-button" onClick={handleDelete}>문서 삭제</button>
+            <button className="delete-button">문서 삭제</button>
           </div>
 
           <div className="doc-header">
@@ -215,10 +157,11 @@ function AdminPage() {
             </div>
             <div className="meta-col">
               <div className="label">업로드 상태</div>
-              <div>업로드 완료</div>
+              <div>업로드 중</div>
             </div>
           </div>
-
+          
+          {/* 탐지 세부 사항 */}
           <div className="title-row">
             <h3>탐지 세부 사항</h3>
             <button className="download-button">문서 다운로드</button>
