@@ -3,6 +3,16 @@ import pickle
 import numpy as np
 import os
 from sentence_transformers import SentenceTransformer
+from pathlib import Path
+
+import preprocessing as pre
+
+default_options = {
+    "sliding_window_size" : 35,
+    "slide" : 1,
+    "threshold1" : 0.85, # -1 ~ 1
+    "threshold2" : 90, # %
+}
 
 class VectorSearchEngine:
     def __init__(self, index_path, label_map_path, model_name="jhgan/ko-sbert-sts", dim=768):
@@ -26,11 +36,45 @@ class VectorSearchEngine:
         self.index.set_ef(100)  # 검색 정확도용
 
     def _index_files_exist(self):
-        try:
-            with open(self.label_map_path, "rb"):
-                return True
-        except FileNotFoundError:
-            return False
+        return os.path.exists(self.index_path) and os.path.exists(self.label_map_path)
+        
+    def encode_confidential_file(self, confidential_file_path, options=default_options):
+        confidential_file_list = os.listdir(confidential_file_path)
+
+        for file_name in confidential_file_list:
+            file_path = os.path.join(confidential_file_path, file_name)
+            with open(file_path, "r", encoding="utf-8") as f:
+                confidential_text = f.read()
+
+            # 슬라이딩 윈도우 적용
+            sliding_sentences = pre.word_sliding_window(confidential_text, window_size=options["sliding_window_size"],  slide=options["slide"])
+
+            print(f"[DEBUG] {file_name} 슬라이딩 문장 개수: {len(sliding_sentences)}")
+
+
+            # 임베딩
+            embeddings = self.model.encode(sliding_sentences, convert_to_numpy=True, normalize_embeddings=True)
+
+            # 현재 라벨 결정
+            if self.label_map:
+                label = max(self.label_map.keys()) + 1
+            else:
+                label = 0
+
+            labels = [label] * len(embeddings)  # 모든 문장에 같은 라벨 부여
+
+            # 벡터 추가
+            self.index.add_items(embeddings, labels)
+
+            # 라벨 → 파일명 매핑
+            self.label_map[label] = file_name
+
+        # 마지막에 인덱스 저장
+        self.save()
+
+        print(f"[INFO] Finished adding all files from {confidential_file_path}.")
+
+
 
     def add_vector(self, text, file_name):
         # 텍스트 인코딩
@@ -52,12 +96,16 @@ class VectorSearchEngine:
         print(f"[INFO] Added vector for '{file_name}' with label {new_label}.")
 
     def save(self):
-        os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
-        os.makedirs(os.path.dirname(self.label_map_path), exist_ok=True)
+        output_dir = os.path.dirname(self.index_path)
+        os.makedirs(output_dir, exist_ok=True)
 
+        # 인덱스 저장
         self.index.save_index(self.index_path)
+
+        # 라벨 매핑 저장
         with open(self.label_map_path, "wb") as f:
             pickle.dump(self.label_map, f)
+
 
     def search(self, query_text, top_k=1):
         # 쿼리 인코딩
@@ -73,28 +121,17 @@ class VectorSearchEngine:
         
         return results
 
+
 if __name__ == "__main__":
-    # 서버 시작할 때 (index 파일, label 파일 지정)
+
     engine = VectorSearchEngine(
-        index_path="../output/hnsw_index.bin",
-        label_map_path="../output/label_to_file_map.pkl"
-    )
+            index_path=f"../output/hnsw_index.bin",
+            label_map_path=f"../output/label_to_file_map.pkl"
+        )
 
-    model = SentenceTransformer("jhgan/ko-sbert-sts", trust_remote_code=True)
-    e1 = model.encode('비밀 파일 내용입니다. ', convert_to_numpy=True, normalize_embeddings=True)
-    e2 = model.encode('비밀스러운 문서를 찾아줘', convert_to_numpy=True, normalize_embeddings=True)
-    
-    # 코사인 유사도
-    cos_sim = np.dot(e1, e2)
-    print(f"코사인 유사도: {cos_sim:.4f}")
+    query = "르네상스 시대에 자신들과 중세를 구분하면서 시작되었으며, 카를 마르크스의 역사 성장 단계 이론이 나온 후, 경제적 개진 수준에 따라서 분간하는 추세가 우월하다. 사실 각 지역 간에 정형화된 특징의 고대나 중세란 실재하지 않는다. 한편 마르크스의 세기 구분론의"
 
-    # 벡터 추가하기
-    engine.add_vector(text="비밀 파일 내용입니다.", file_name="confidential-1.txt")
-
-    # 검색하기
-    results = engine.search(query_text="비밀스러운 문서를 찾아줘", top_k=1)
-
-    for r in results:
-        cosine_similarity = 1 - r['distance']
-        print(f"파일명: {r['file_name']}, 코사인 유사도: {cosine_similarity:.4f}")
-
+    engine.encode_confidential_file("../../data/namu") 
+    results = engine.search(query, top_k=1)
+    for result in results:
+        print(f"File: {result['file_name']}, Distance: {result['distance']}")
