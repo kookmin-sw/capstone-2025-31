@@ -8,7 +8,7 @@ from pathlib import Path
 import preprocessing as pre
 
 default_options = {
-    "sliding_window_size" : 35,
+    "sliding_window_size" : 30,
     "slide" : 1,
     "threshold1" : 0.85, # -1 ~ 1
     "threshold2" : 90, # %
@@ -30,70 +30,109 @@ class VectorSearchEngine:
                 self.label_map = pickle.load(f)
         else:
             print("[INFO] Creating new empty index and label map...")
-            self.index.init_index(max_elements=10000, ef_construction=200, M=16)
+            self.index.init_index(max_elements=1000000, ef_construction=200, M=16)
             self.label_map = {}
         
-        self.index.set_ef(100)  # 검색 정확도용
+        self.index.set_ef(1000)  # 검색 정확도용
 
     def _index_files_exist(self):
         return os.path.exists(self.index_path) and os.path.exists(self.label_map_path)
+    
+    def add_confidential_file(self, confidential_file_path, options=default_options):
+        if not os.path.exists(confidential_file_path):
+            raise FileNotFoundError(f"File path {confidential_file_path} does not exist.")
+
+        with open(confidential_file_path, "r", encoding="utf-8") as f:
+            confidential_text = f.read()
+        
+        sliding_sentences = pre.word_sliding_window(confidential_text, window_size=options["sliding_window_size"], slide=options["slide"])
+
+        embeddings = self.model.encode(sliding_sentences, convert_to_numpy=True, normalize_embeddings=True)
+
+        next_label = max(self.label_map.keys(), default=-1) + 1
+        labels = []
+        label_to_file = {}
+
+        for i in range(len(embeddings)):
+            label = next_label
+            labels.append(label)
+            label_to_file[label] = f"{os.path.basename(confidential_file_path)}_sent_{i}"
+            next_label += 1
+
+        self.index.add_items(embeddings, labels)
+
+        self.label_map.update(label_to_file)
+
+        self.save()
+
+        print(f"[INFO] Finished adding {confidential_file_path} to the index.")
+
         
     def encode_confidential_file(self, confidential_file_path, options=default_options):
         confidential_file_list = os.listdir(confidential_file_path)
-
+        next_label = max(self.label_map.keys(), default=-1) + 1
+    
         for file_name in confidential_file_list:
             file_path = os.path.join(confidential_file_path, file_name)
             with open(file_path, "r", encoding="utf-8") as f:
                 confidential_text = f.read()
-
+    
             # 슬라이딩 윈도우 적용
-            sliding_sentences = pre.word_sliding_window(confidential_text, window_size=options["sliding_window_size"],  slide=options["slide"])
-
+            sliding_sentences = pre.word_sliding_window(confidential_text, window_size=options["sliding_window_size"], slide=options["slide"])
+    
             print(f"[DEBUG] {file_name} 슬라이딩 문장 개수: {len(sliding_sentences)}")
-
-
+    
             # 임베딩
             embeddings = self.model.encode(sliding_sentences, convert_to_numpy=True, normalize_embeddings=True)
-
-            # 현재 라벨 결정
-            if self.label_map:
-                label = max(self.label_map.keys()) + 1
-            else:
-                label = 0
-
-            labels = [label] * len(embeddings)  # 모든 문장에 같은 라벨 부여
-
+    
+            labels = []
+            label_to_file = {}
+    
+            for i in range(len(embeddings)):
+                labels.append(next_label)
+                label_to_file[next_label] = f"{file_name}_sent_{i}"
+                next_label += 1
+    
             # 벡터 추가
             self.index.add_items(embeddings, labels)
-
+    
             # 라벨 → 파일명 매핑
-            self.label_map[label] = file_name
-
+            self.label_map.update(label_to_file)
+    
         # 마지막에 인덱스 저장
         self.save()
-
+    
         print(f"[INFO] Finished adding all files from {confidential_file_path}.")
 
+    
+    def query_confidential_file(self, query_text, top_k=1, sim_threshold=0.85):
+        # 슬라이딩 윈도우 적용
+        query_sentences = pre.word_sliding_window(query_text, window_size=default_options["sliding_window_size"], slide=default_options ["slide"])
 
 
-    def add_vector(self, text, file_name):
-        # 텍스트 인코딩
-        embedding = self.model.encode([text], convert_to_numpy=True, normalize_embeddings=True)
-        
-        # 새로운 라벨 ID
-        if self.label_map:
-            new_label = max(self.label_map.keys()) + 1
-        else:
-            new_label = 0
-        
-        # 추가
-        self.index.add_items(embedding, [new_label])
-        self.label_map[new_label] = file_name
-        
-        # 디스크에 저장
-        self.save()
+        # 슬라이딩 문장들 인코딩
+        query_embeddings = self.model.encode(query_sentences, convert_to_numpy=True, normalize_embeddings=True)
 
-        print(f"[INFO] Added vector for '{file_name}' with label {new_label}.")
+        # threshold를 distance 기준으로 변환
+        distance_threshold = 1 - sim_threshold
+
+        match_count = 0
+        total_count = len(query_embeddings)
+
+        for embedding in query_embeddings:
+            embedding = embedding.reshape(1, -1)  # (1, 768)
+
+            # 검색
+            labels, distances = self.index.knn_query(embedding, k=top_k)
+
+            # top_k 중에서 distance가 threshold보다 작은 결과 개수 세기
+            matches = (distances[0] <= distance_threshold).sum()
+            match_count += matches
+
+        print(f"[INFO] 총 {total_count}개의 슬라이딩 문장 중 {match_count}개가 threshold 이상 매칭되었습니다.")
+
+        return match_count, total_count
+
 
     def save(self):
         output_dir = os.path.dirname(self.index_path)
@@ -106,32 +145,3 @@ class VectorSearchEngine:
         with open(self.label_map_path, "wb") as f:
             pickle.dump(self.label_map, f)
 
-
-    def search(self, query_text, top_k=1):
-        # 쿼리 인코딩
-        query_vec = self.model.encode([query_text], convert_to_numpy=True, normalize_embeddings=True)
-        
-        # 검색
-        labels, distances = self.index.knn_query(query_vec, k=top_k)
-        
-        results = []
-        for label, distance in zip(labels[0], distances[0]):
-            file_name = self.label_map[label]
-            results.append({"file_name": file_name, "distance": distance})
-        
-        return results
-
-
-if __name__ == "__main__":
-
-    engine = VectorSearchEngine(
-            index_path=f"../output/hnsw_index.bin",
-            label_map_path=f"../output/label_to_file_map.pkl"
-        )
-
-    query = "르네상스 시대에 자신들과 중세를 구분하면서 시작되었으며, 카를 마르크스의 역사 성장 단계 이론이 나온 후, 경제적 개진 수준에 따라서 분간하는 추세가 우월하다. 사실 각 지역 간에 정형화된 특징의 고대나 중세란 실재하지 않는다. 한편 마르크스의 세기 구분론의"
-
-    engine.encode_confidential_file("../../data/namu") 
-    results = engine.search(query, top_k=1)
-    for result in results:
-        print(f"File: {result['file_name']}, Distance: {result['distance']}")
