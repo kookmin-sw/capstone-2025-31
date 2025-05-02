@@ -1,0 +1,81 @@
+.sidebar {
+  transition: all 0.5s ease;
+  background: #f8f8f8;
+  padding: 20px;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  padding-right: 0;
+}
+
+.sidebar.closed {
+  left: -300px;
+  overflow: hidden;
+}
+
+.toggle-button {
+  background-color: #f4f4f4;
+  color: #000000;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+  position: fixed;
+  left: 230px;
+  transition: all 0.5s ease;
+}
+
+.toggle-button:hover, .sidebar.closed .toggle-button:hover {
+  background-color: #cccccc;
+}
+
+.sidebar.closed .toggle-button {
+  background-color: #ffffff;
+  position: fixed;
+  left: 20px;
+}
+
+.new-conversation {
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  width: 220px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.new-conversation:hover {
+  background-color: #dddddd;
+}
+
+.conversation-container {
+  max-height: 1030px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+
+.conversation-list {
+  width: 210px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.conversation-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.conversation-item:hover {
+  background-color: #ddd;
+}

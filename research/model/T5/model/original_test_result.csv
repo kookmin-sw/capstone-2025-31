@@ -1,0 +1,520 @@
+target_text,predict_text,label
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+,0,
+not similar,,0
+,0,
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+,0,
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+,0,
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,", , , ,",0
+similar,,0
+not similar,,0
+similar,",",0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,?,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+,0,
+similar,,0
+not similar,,0
+not similar,,0
+not similar,2002,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,", ,",0
+similar,,0
+similar,,0
+similar,(2 5),0
+similar,,0
+,0,
+similar,,0
+not similar,,0
+similar,,0
+similar,3,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,AI,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,2  4 64,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,0,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+,0,
+similar,,0
+not similar,", ,   .",0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+,0,
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+,0,
+,0,
+not similar,,0
+similar,518,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,", ,",0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+,0,
+not similar,,0
+,0,
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,", , , ,",0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,2.     ? 2.,0
+not similar,"(90%p ), (0.2%",0
+not similar,,0
+similar,", , ,",0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+,0,
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,"( ),",0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+,0,
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+,0,
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+,0,
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+,0,
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+,0,
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,.   .,0
+not similar,",",0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,(),0
+not similar,,0
+similar,SR,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,20,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,?,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,-19 ( ?˜â€? 13,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+,0,
+not similar,,0
+not similar,,0
+not similar,.,0
+not similar,,0
+similar,,0
+not similar,4400    88,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,",   .",0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+,0,
+similar,2020   66,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+similar,,0
+not similar,,0
+similar,,0
+similar,,0
+,0,
+not similar,,0
+not similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+similar,,0
+similar,,0
+not similar,,0
+not similar,,0
+not similar,,0
+not similar,????.,0
+not similar,,0
