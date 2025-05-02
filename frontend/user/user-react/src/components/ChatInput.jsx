@@ -84,30 +84,29 @@ const ChatInput = ({ onSend }) => {
         </div>
       )}
 
-      {/* 파일 첨부 아이콘 */}
-      <label htmlFor="file-upload">
-        <FaPaperclip size={20} />
-        <input
-          id="file-upload"
-          type="file"
-          style={{ display: 'none' }}
-          multiple
-          onChange={handleFileChange}
+      <div className="input-row">
+        <textarea
+          className="message-input"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder="메시지를 입력하세요..."
+          onKeyPress={handleKeyPress}
+          rows={2}
         />
-      </label>
+      </div>
 
-      {/* 메시지 입력창 */}
-      <textarea
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-        placeholder="메시지를 입력하세요..."
-        onKeyPress={handleKeyPress}
-        rows={1}
-      />
-
-      {/* 전송 버튼 */}
-      <div className="icons">
-        <button onClick={handleSend}>
+      <div className="actions-row">
+        <label htmlFor="file-upload" className="file-button">
+          <FaPaperclip size={20} />
+          <input
+            id="file-upload"
+            type="file"
+            style={{ display: 'none' }}
+            multiple
+            onChange={handleFileChange}
+          />
+        </label>
+        <button className="send-button" onClick={handleSend}>
           <FaPaperPlane size={20} />
         </button>
       </div>
