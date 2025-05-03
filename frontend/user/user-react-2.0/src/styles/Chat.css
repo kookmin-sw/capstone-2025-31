@@ -1,28 +1,8 @@
-.main-container {
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background: white;
-}
-
 .chat-box {
   width: 1000px;
   border-radius: 6px;
   padding: 20px;
   text-align: center;
-}
-
-.chat-box h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.chat-box p {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 20px;
 }
 
 .input-area {
