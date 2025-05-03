@@ -1,9 +1,11 @@
-import Login from "./components/Login.jsx"
+import Login from "./components/login";
+import Chat from "./components/Chat";
 import './App.css'
 
 function App() {
   return (
-    <Login></Login>
+    // <Login></Login>
+    <Chat></Chat>
   );
 }
 

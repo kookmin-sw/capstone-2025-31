@@ -1,0 +1,73 @@
+.main-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+
+.chat-box {
+  width: 1000px;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+}
+
+.chat-box h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chat-box p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+  border: 1px solid #999;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.file-btn,
+.send-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.send-btn {
+  rotate: 90deg;
+}
+
+.text-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 6px;
+}
+
+.file-info {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.material-symbols-outlined {
+  font-size: 35px;
+}
