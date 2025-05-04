@@ -1,0 +1,30 @@
+.main-wrapper {
+  width: 1200px;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting {
+  height: 45vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.greeting h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.greeting p {
+  font-size: 1.2rem;
+  color: #555;
+  padding: 0px;
+  margin: 0px;
+}
