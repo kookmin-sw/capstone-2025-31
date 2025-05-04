@@ -33,6 +33,13 @@ const Chat = ({ onFileUpload, onSendMessage }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
     <div className="chat-box">
       <div className="input-area">
@@ -53,6 +60,7 @@ const Chat = ({ onFileUpload, onSendMessage }) => {
           placeholder="무엇이든 물어보세요"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
 
         <button className="send-btn" onClick={handleSubmit}>
