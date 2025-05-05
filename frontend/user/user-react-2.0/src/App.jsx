@@ -1,12 +1,21 @@
-import Login from "./components/login";
-import Chat from "./components/Chat";
-import './App.css'
+import React, { useState } from "react";
+import Login from "./components/Login";
+import MainPage from "./pages/MainPage";
+import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    // <Login></Login>
-    <Chat></Chat>
+    <>
+      {isLoggedIn ? (
+        <MainPage />
+      ) : (
+        <Login onLogin={() => setIsLoggedIn(true)} />
+      )}
+    </>
+    // <MainPage ></MainPage>
   );
 }
 
-export default App
+export default App;
