@@ -65,9 +65,46 @@ const MainPage = () => {
     }
   };
 
-  const handleSendMessage = (text) => {
+  const handleSendMessage = async (text) => {
     setFileUploaded(true); // 채팅 모드 진입
-    setMessages((prev) => [...prev, { sender: "user", text }]);
+    setMessages((prev) => [
+      ...prev,
+      { sender: "user", text },
+      {
+        sender: "system",
+        component: <Checking label={0} time="2025.04.29 21:48:32" />, // 검사 중
+      },
+    ]);
+  
+    try {
+      const response = await new Promise((resolve) =>
+        setTimeout(() => {
+          const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전, 2: 위험
+          resolve({ label: randomLabel, time: "2025.04.29 21:48:48" });
+        }, 2000)
+      );
+  
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        const last = newMessages.pop();
+  
+        if (last.sender === "system" && last.component) {
+          newMessages.push({
+            sender: "system",
+            component: <Checking label={response.label} time={response.time} />,
+          });
+        }
+  
+        newMessages.push({
+          sender: "ai",
+          component: response.label === 1 ? <Safe /> : <Unsafe />,
+        });
+  
+        return newMessages;
+      });
+    } catch (error) {
+      console.error("유사도 검사 실패:", error);
+    }
   };
 
   return (
