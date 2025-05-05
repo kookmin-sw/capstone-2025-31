@@ -1,72 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Chat from "../components/Chat";
 import Checking from "../components/Checking";
+import Safe from "../components/Safe";
+import Unsafe from "../components/Unsafe";
 import "../styles/MainPage.css";
 
 const MainPage = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [initialized, setInitialized] = useState(false); // 초기 메시지 여부
 
+  // 처음 한 번만 인사 메시지 출력
+  useEffect(() => {
+    if (!initialized) {
+      setMessages([
+        { sender: "user", text: "안녕? 좋은 아침이야. 너의 이름은 뭐니?" },
+      ]);
+      setInitialized(true);
+    }
+  }, [initialized]);
+
+  // 파일 업로드 시
   const handleFileUpload = async (fileName) => {
     setFileUploaded(true);
-    setMessages([
-      { sender: "user", text: "안녕? 좋은 아침이야" },
-      { sender: "user", text: `[파일] : ${fileName}` },
-    ]);
-  
-    // 검사 결과 메시지 (임시 검사 중 상태)
     setMessages((prev) => [
       ...prev,
+      { sender: "user", text: `[파일] : ${fileName}` },
       {
         sender: "system",
         component: <Checking label={0} time="2025.04.29 21:48:32" />, // 검사 중
       },
     ]);
-  
+
     try {
-      // 검사 시뮬레이션 (2초 후 결과 반환)
       const response = await new Promise((resolve) =>
         setTimeout(() => {
-          const randomLabel = Math.random() > 0.5 ? 1 : 2; // label: 1 (안전), 2 (위험)
+          const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전 2: 위험 ( 현재는 랜덤 값으로 설정 )
           resolve({ label: randomLabel, time: "2025.04.29 21:48:48" });
         }, 2000)
       );
-  
-      // 메시지 교체
+
       setMessages((prev) => {
         const newMessages = [...prev];
         const last = newMessages.pop();
-  
+
         if (last.sender === "system" && last.component) {
           newMessages.push({
             sender: "system",
             component: <Checking label={response.label} time={response.time} />,
           });
         }
-  
-        // 검사 결과에 따른 AI 응답
-        if (response.label === 1) {
-          // 안전
-          newMessages.push({
-            sender: "ai",
-            text: `안녕하세요! 좋은 아침입니다.
-                  저는 특별한 이름을 가진 건 아니고, 여러분을 돕기 위해 만들어진 AI 어시스턴트(ChatGPT)입니다.
-                  
-                  필요하시면 저를 부르기 편하게 "챗봇" 또는 "비서", 혹은 원하는 이름으로 불러주셔도 괜찮습니다.
-                  원하시면 별명을 하나 정해주실래요?
-                  
-                  어떤 이름으로 불렀으면 좋겠나요?`,
-          });
-        } else {
-          // 위험
-          newMessages.push({
-            sender: "ai",
-            text: `[EV-LDS] : 당신의 요청에 기밀 유출 위험이 탐지되어, 조직의 정책에 의거하여 내부 LLM을 통해 답변을 생성하였습니다.
-                    안녕하세요! 좋은 아침입니다.
-                    저는 특별한 이름을 가진 건 아니고, 여러분을 돕기 위해 만들어진 AI 어시스턴트(Exaone-3.5)입니다.`,
-          });
-        }
-  
+
+        newMessages.push({
+          sender: "ai",
+          component: 
+            response.label === 1 ? <Safe/> : <Unsafe/>
+          
+        });
+
         return newMessages;
       });
     } catch (error) {
@@ -75,6 +66,7 @@ const MainPage = () => {
   };
 
   const handleSendMessage = (text) => {
+    setFileUploaded(true); // 채팅 모드 진입
     setMessages((prev) => [...prev, { sender: "user", text }]);
   };
 

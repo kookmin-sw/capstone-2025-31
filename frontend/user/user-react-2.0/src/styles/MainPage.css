@@ -64,4 +64,5 @@
   border-radius: 20px;
   width: fit-content;
   word-break: break-word;
+  max-width: 80%;
 }
