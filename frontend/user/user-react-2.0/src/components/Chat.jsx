@@ -16,6 +16,7 @@ const Chat = ({ onFileUpload, onSendMessage }) => {
       setUploadedFile(file);
       setMessage(`${file.name}`);
     }
+    fileInputRef.current.value = "";
   };
 
   const handleSubmit = () => {
