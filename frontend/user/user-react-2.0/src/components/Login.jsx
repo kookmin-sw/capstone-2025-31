@@ -5,6 +5,7 @@ const Login = ({ onLogin }) => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
+  // 로그인 폼 제출 처리
   const handleSubmit = (e) => {
     e.preventDefault();
 

@@ -6,10 +6,12 @@ const Chat = ({ onFileUpload, onSendMessage }) => {
   const [message, setMessage] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
 
+  //파일 버튼 클릭시 input 클릭
   const handleFileClick = () => {
     fileInputRef.current.click();
   };
 
+  // 파일이 선택되면 상태 업데이트 및 input 초기화
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -19,21 +21,24 @@ const Chat = ({ onFileUpload, onSendMessage }) => {
     fileInputRef.current.value = "";
   };
 
+  //메세지 전송 및 파일 업로드 처리
   const handleSubmit = () => {
     if (uploadedFile) {
+      //파일이 선택된 경우
       if (onFileUpload) {
-        onFileUpload(uploadedFile.name);
+        onFileUpload(uploadedFile.name); // 백엔드 연동시 수정 필요
       }
       setUploadedFile(null);
       setMessage("");
     } else if (message.trim()) {
+      //일반 텍스트 메세지인 경우
       if (onSendMessage) {
-        onSendMessage(message.trim());
+        onSendMessage(message.trim()); // 백엔드 연동 시 수정 필요
       }
       setMessage("");
     }
   };
-
+  
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();

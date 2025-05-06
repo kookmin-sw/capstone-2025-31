@@ -6,8 +6,8 @@ import Unsafe from "../components/Unsafe";
 import "../styles/MainPage.css";
 
 const MainPage = () => {
-  const [fileUploaded, setFileUploaded] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [fileUploaded, setFileUploaded] = useState(false); // 파일 또는 메세지 업로드 여부
+  const [messages, setMessages] = useState([]); // 전체 채팅 메세지 리스트
   const [initialized, setInitialized] = useState(false); // 초기 메시지 여부
 
   // 처음 한 번만 인사 메시지 출력
@@ -23,6 +23,7 @@ const MainPage = () => {
   // 파일 업로드 시
   const handleFileUpload = async (fileName) => {
     setFileUploaded(true);
+    // 사용자 메시지 및 검사 중 컴포넌트 표시
     setMessages((prev) => [
       ...prev,
       { sender: "user", text: `[파일] : ${fileName}` },
@@ -33,6 +34,7 @@ const MainPage = () => {
     ]);
 
     try {
+      // 백엔드 연결 시 수정 필요
       const response = await new Promise((resolve) =>
         setTimeout(() => {
           const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전 2: 위험 ( 현재는 랜덤 값으로 설정 )
@@ -40,6 +42,7 @@ const MainPage = () => {
         }, 2000)
       );
 
+      // 검사 결과 반영
       setMessages((prev) => {
         const newMessages = [...prev];
         const last = newMessages.pop();
@@ -65,6 +68,7 @@ const MainPage = () => {
     }
   };
 
+  // 사용자가 메세지를 입력했을 때
   const handleSendMessage = async (text) => {
     setFileUploaded(true); // 채팅 모드 진입
     setMessages((prev) => [
@@ -77,6 +81,7 @@ const MainPage = () => {
     ]);
   
     try {
+      // 백엔드에서 수정 필요
       const response = await new Promise((resolve) =>
         setTimeout(() => {
           const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전, 2: 위험

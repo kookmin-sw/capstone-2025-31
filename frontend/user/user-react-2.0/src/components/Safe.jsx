@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "../assets/chat-gpt.png"; // 이미지 경로
+import icon from "../assets/chat-gpt.png";
 import "../styles/Safe.css";
 
 const Safe = () => {

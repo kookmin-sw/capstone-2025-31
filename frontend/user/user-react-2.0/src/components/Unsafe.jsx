@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "../assets/LLM.png"; // 이미지 경로
+import icon from "../assets/LLM.png";
 import "../styles/Safe.css";
 
 const Unsafe = () => {
