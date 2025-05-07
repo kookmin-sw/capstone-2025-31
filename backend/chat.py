@@ -3,7 +3,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # LLM 모델 설정
-llm = ChatOllama(model="EXAONE-3.5-7.8B-Instruct-Q8_0:latest")
+llm = ChatOllama(model="exaone-3.5-7.8b-instruct:latest")
 
 # Chatbot의 시스템 메시지 설정
 prompt = ChatPromptTemplate.from_messages(

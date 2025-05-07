@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import ChatInput from './ChatInput';
 import '../styles/ChatContainer.css';
+import { sendMessage } from '../utils/api';
+import { sendPairwiseCheck } from '../utils/pairwise';
 
-const ChatContainer = () => {
+const ChatContainer = ({ currentChatId, prevChat, addMessageToChat }) => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null); // 메시지 끝을 가리킬 ref
 
@@ -19,56 +21,90 @@ const ChatContainer = () => {
   // 메시지 전송 및 AI 답변 생성 함수
   const handleSend = async ({ message, files }) => {
     const newMessages = [];
-    
-    // 사용자 메시지 추가 (텍스트 메시지가 있을 경우)
+  
+    // 사용자 텍스트 메시지 추가
     if (message) {
       newMessages.push({
         id: Date.now(),
-        sender: 'user',
+        sender: "user",
         content: message,
         files: [],
       });
     }
-
-    // 파일 메시지 및 AI 응답 추가
+  
+    // 파일 처리
     for (const file of files) {
       const content = await readFileContent(file);
       const fileMessageId = Date.now() + Math.random();
-      
+  
       // 사용자 파일 메시지
       newMessages.push({
         id: fileMessageId,
-        sender: 'user',
+        sender: "user",
         content: `${file.name}`,
         files: [{ name: file.name, content }],
       });
-
-      // AI의 파일 응답 메시지
+  
+      // 파일 내용에 대한 AI 메시지 (파일 자체에 대한 답변 대신 파일 내용을 그대로 표시)
       newMessages.push({
         id: fileMessageId + 1,
-        sender: 'ai',
+        sender: "ai",
         content: `${content}`,
         files: [],
       });
     }
-
-    // AI 응답 메시지 추가 (텍스트 메시지가 있을 경우)
+  
+    // 서버에 사용자 텍스트 메시지를 보낸 경우, AI 응답 요청
     if (message) {
-      newMessages.push({
-        id: Date.now() + Math.random(),
-        sender: 'ai',
-        content: `${message}`,
-        files: [],
-      });
+      try {
+        await sendPairwiseCheck(message);
+
+        const systemMessage = {
+          type: "system",
+          content: "당신은 유용한 AI 어시스턴트입니다.",
+        };
+        const userMessage = {
+          type: "human",
+          content: message,
+        };
+  
+        const aiReply = await sendMessage([systemMessage, userMessage]);
+  
+        newMessages.push({
+          id: Date.now() + Math.random(),
+          sender: "ai",
+          content: aiReply,
+          files: [],
+        });
+
+      } catch (err) {
+        newMessages.push({
+          id: Date.now() + Math.random(),
+          sender: "ai",
+          content: "서버 요청 중 오류가 발생했습니다.",
+          files: [],
+        });
+      }
     }
 
-    // 한 번에 메시지 추가
-    setMessages((prevMessages) => [...prevMessages, ...newMessages]);
+  
+    // 현재 대화에 메시지 추가
+    if (currentChatId) {
+      newMessages.forEach((msg) => addMessageToChat(currentChatId, msg));
+    }
   };
+  
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]); // 메시지가 변경될 때마다 실행
+
+  useEffect(() => {
+    const chat = prevChat.find((chat) => chat.id === currentChatId);
+    if (chat) {
+      setMessages(chat.messages);
+    }
+  }, [currentChatId, prevChat]);
 
   return (
     <div className={`chat-container ${messages.length === 0 ? "empty" : ""}`}>
