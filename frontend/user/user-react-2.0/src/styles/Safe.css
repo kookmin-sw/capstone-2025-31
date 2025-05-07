@@ -1,0 +1,20 @@
+.icon-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.intro-icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+}
+
+.intro-text {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
