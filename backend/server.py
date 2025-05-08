@@ -1,11 +1,23 @@
-# flask_server.py
+# chat_server.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from chat import chain as chat_chain
-from sbert import pairwise_check
-from sentence_transformers import SentenceTransformer
+from vector_db import VectorSearchEngine, default_options
+import os
+from vector_db import VectorSearchEngine
 
+# 전역 벡터 검색 엔진 객체 초기화
+engine = VectorSearchEngine(
+    index_path="output/index.bin",
+    label_map_path="output/label_map.pkl",
+    model_name="jhgan/ko-sbert-sts"
+)
+
+
+# 최초 실행 시 한 번만 수행
+engine.encode_confidential_file("./data")
+# Flask app init
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
@@ -33,23 +45,31 @@ def pairwise_check_api():
     if not query_text:
         return jsonify({"error": "query_text is required"}), 400
 
-    # SBERT 모델 로드
-    model = SentenceTransformer("jhgan/ko-sbert-sts", trust_remote_code=True)
+    try:
+        # 쿼리 검사 실행
+        match_count, total_count = engine.query_confidential_file(
+            query_text=query_text,
+            top_k=1,
+            sim_threshold=default_options["threshold1"]
+        )
 
-    # pairwise_check 실행
-    result_csv_path = pairwise_check(
-        model=model,
-        confidential_file_path="./data",  
-        enc_confidential_path="../output/enc_confidential",  
-        query_txt=query_text,
-        is_query_file=False
-    )
+        match_ratio = match_count / total_count * 100
+        is_flagged = match_ratio >= default_options["threshold2"]
 
-    return jsonify({"result_file": result_csv_path})
+        return jsonify({
+            "match_count": int(match_count),
+            "total_count": int(total_count),
+             "flagged": bool(match_count > 0)  
+        })
 
+    except Exception as e:
+        import traceback
+        traceback.print_exc()  # 전체 에러 로그 출력
+        return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
 
 
 @app.route("/chat", methods=["POST"])
+
 def chat():
     data = request.json
     messages_data = data.get("messages", [])
