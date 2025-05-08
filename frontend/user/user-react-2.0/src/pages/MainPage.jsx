@@ -1,114 +1,99 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Chat from "../components/Chat";
 import Checking from "../components/Checking";
 import Safe from "../components/Safe";
 import Unsafe from "../components/Unsafe";
+import ReactMarkdown from "react-markdown";
 import "../styles/MainPage.css";
+import { sendPairwiseCheck, sendMessage } from "../utils/api";
 
 const MainPage = () => {
-  const [fileUploaded, setFileUploaded] = useState(false); // 파일 또는 메세지 업로드 여부
-  const [messages, setMessages] = useState([]); // 전체 채팅 메세지 리스트
-  const [initialized, setInitialized] = useState(false); // 초기 메시지 여부
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [messages, setMessages] = useState([]);
 
-  // 처음 한 번만 인사 메시지 출력
-  useEffect(() => {
-    if (!initialized) {
-      setMessages([
-        { sender: "user", text: "안녕? 좋은 아침이야. 너의 이름은 뭐니?" },
-      ]);
-      setInitialized(true);
-    }
-  }, [initialized]);
+  const getTimestamp = () =>
+    new Date().toLocaleString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
 
-  // 파일 업로드 시
   const handleFileUpload = async (fileName) => {
     setFileUploaded(true);
-    // 사용자 메시지 및 검사 중 컴포넌트 표시
+    const now = getTimestamp();
+
     setMessages((prev) => [
       ...prev,
       { sender: "user", text: `[파일] : ${fileName}` },
-      {
-        sender: "system",
-        component: <Checking label={0} time="2025.04.29 21:48:32" />, // 검사 중
-      },
+      { sender: "system", component: <Checking label={0} time={now} /> }
     ]);
 
     try {
-      // 백엔드 연결 시 수정 필요
-      const response = await new Promise((resolve) =>
-        setTimeout(() => {
-          const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전 2: 위험 ( 현재는 랜덤 값으로 설정 )
-          resolve({ label: randomLabel, time: "2025.04.29 21:48:48" });
-        }, 2000)
-      );
+      const result = await sendPairwiseCheck(fileName);
+      const label = result.flagged ? 2 : 1;
+      const time = getTimestamp();
 
-      // 검사 결과 반영
       setMessages((prev) => {
-        const newMessages = [...prev];
-        const last = newMessages.pop();
-
-        if (last.sender === "system" && last.component) {
-          newMessages.push({
-            sender: "system",
-            component: <Checking label={response.label} time={response.time} />,
-          });
-        }
-
-        newMessages.push({
-          sender: "ai",
-          component: 
-            response.label === 1 ? <Safe/> : <Unsafe/>
-          
+        const updated = [...prev];
+        updated.pop(); // remove 검사 중
+        updated.push({
+          sender: "system",
+          component: <Checking label={label} time={time} />
         });
-
-        return newMessages;
+        updated.push({
+          sender: "ai",
+          component: label === 1 ? <Safe /> : <Unsafe />
+        });
+        return updated;
       });
-    } catch (error) {
-      console.error("검사 실패:", error);
+    } catch (err) {
+      console.error("파일 검사 실패:", err);
     }
   };
 
-  // 사용자가 메세지를 입력했을 때
   const handleSendMessage = async (text) => {
-    setFileUploaded(true); // 채팅 모드 진입
+    setFileUploaded(true);
+    const now = getTimestamp();
+
     setMessages((prev) => [
       ...prev,
       { sender: "user", text },
-      {
-        sender: "system",
-        component: <Checking label={0} time="2025.04.29 21:48:32" />, // 검사 중
-      },
+      { sender: "system", component: <Checking label={0} time={now} /> }
     ]);
-  
+
     try {
-      // 백엔드에서 수정 필요
-      const response = await new Promise((resolve) =>
-        setTimeout(() => {
-          const randomLabel = Math.random() > 0.5 ? 1 : 2; // 1: 안전, 2: 위험
-          resolve({ label: randomLabel, time: "2025.04.29 21:48:48" });
-        }, 2000)
-      );
-  
+      const checkRes = await sendPairwiseCheck(text);
+      const label = checkRes.flagged ? 2 : 1;
+      const time = getTimestamp();
+
+      let aiReply = "";
+      if (label === 1) {
+        aiReply = await sendMessage([
+          { type: "system", content: "당신은 유용한 AI 어시스턴트입니다." },
+          { type: "human", content: text }
+        ]);
+      }
+
       setMessages((prev) => {
-        const newMessages = [...prev];
-        const last = newMessages.pop();
-  
-        if (last.sender === "system" && last.component) {
-          newMessages.push({
-            sender: "system",
-            component: <Checking label={response.label} time={response.time} />,
-          });
-        }
-  
-        newMessages.push({
-          sender: "ai",
-          component: response.label === 1 ? <Safe /> : <Unsafe />,
+        const updated = [...prev];
+        updated.pop(); // remove 검사 중
+        updated.push({
+          sender: "system",
+          component: <Checking label={label} time={time} />
         });
-  
-        return newMessages;
+        updated.push({
+          sender: "ai",
+          component: label === 1
+            ? <ReactMarkdown>{aiReply}</ReactMarkdown>
+            : <Unsafe />
+        });
+        return updated;
       });
-    } catch (error) {
-      console.error("유사도 검사 실패:", error);
+    } catch (err) {
+      console.error("메시지 처리 실패:", err);
     }
   };
 
@@ -126,7 +111,13 @@ const MainPage = () => {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`chat-message ${msg.sender || (msg.component ? "ai" : "")}`}
+              className={`chat-message ${
+                msg.sender === "user"
+                  ? "user"
+                  : msg.sender === "ai"
+                  ? "ai"
+                  : "system"
+              }`}
             >
               {msg.component ? msg.component : msg.text}
             </div>
