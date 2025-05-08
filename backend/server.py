@@ -5,7 +5,6 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from chat import chain as chat_chain
 from vector_db import VectorSearchEngine, default_options
 import os
-from vector_db import VectorSearchEngine
 
 # 전역 벡터 검색 엔진 객체 초기화
 engine = VectorSearchEngine(
@@ -81,3 +80,4 @@ def chat():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)
+
