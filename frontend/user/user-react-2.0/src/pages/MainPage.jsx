@@ -9,8 +9,17 @@ const MainPage = () => {
   const [fileUploaded, setFileUploaded] = useState(false); // 파일 또는 메세지 업로드 여부
   const [messages, setMessages] = useState([]); // 전체 채팅 메세지 리스트
   const [initialized, setInitialized] = useState(false); // 초기 메시지 여부
+  const [hideGreeting, setHideGreeting] = useState(false);
+  const [isChatMode, setIsChatMode] = useState(false);
 
-  // 처음 한 번만 인사 메시지 출력
+  useEffect(() => {
+    if (fileUploaded) {
+      setHideGreeting(true);
+      setIsChatMode(true);
+    }
+  }, [fileUploaded]);
+
+
   useEffect(() => {
     if (!initialized) {
       setMessages([
@@ -113,15 +122,16 @@ const MainPage = () => {
   };
 
   return (
-    <div className={`main-wrapper ${fileUploaded ? "chat-mode" : ""}`}>
-      {!fileUploaded && (
-        <div className="greeting">
+    <div className={`main-wrapper ${isChatMode ? "chat-mode" : ""}`}>
+      {!hideGreeting && (
+        <div className={`greeting ${fileUploaded ? "fade-out" : "fade-in"}`}>
           <h2>좋은 하루입니다. 무엇을 도와드릴까요?</h2>
           <p>EV-EDS 시스템으로 기밀 유출 위험 탐지 중입니다. 기밀 유출 걱정 없이 물어보세요!</p>
         </div>
       )}
 
-      {fileUploaded && (
+
+      {isChatMode && (
         <div className="chat-window">
           {messages.map((msg, index) => (
             <div
@@ -134,7 +144,7 @@ const MainPage = () => {
         </div>
       )}
 
-      <div className="chat-input-wrapper">
+      <div className={`chat-input-wrapper ${fileUploaded ? "" : "slide-up"}`}>
         <Chat
           onFileUpload={handleFileUpload}
           onSendMessage={handleSendMessage}
