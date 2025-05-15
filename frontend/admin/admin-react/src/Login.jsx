@@ -20,7 +20,7 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-left">
-        <h1>EV-LDS</h1>
+        <h1>EV-DLP</h1>
         <p className="login-subtext">내부 정보 유출 위험 감지를 위한 생성형 AI 보안 플랫폼</p>
         <input
           type="text"
