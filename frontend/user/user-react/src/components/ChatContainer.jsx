@@ -88,6 +88,7 @@ const ChatContainer = ({ currentChatId, prevChat, addMessageToChat }) => {
     }
 
   
+  
     // 현재 대화에 메시지 추가
     if (currentChatId) {
       newMessages.forEach((msg) => addMessageToChat(currentChatId, msg));
