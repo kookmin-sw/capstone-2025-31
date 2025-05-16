@@ -14,6 +14,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(0, 0.97, 0.58, 1)
+}
+
+.greeting.fade-out {
+  height: 45vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0;
 }
 
 .greeting h2 {
@@ -65,4 +76,58 @@
   width: fit-content;
   word-break: break-word;
   max-width: 80%;
+}
+
+.chat-message {
+  animation: slideUpFade 0.4s ease forwards;
+  opacity: 0;
+  animation-delay: 0.7s;
+}
+
+.main-wrapper.chat-mode .chat-input-wrapper {
+  animation: inputSlideUp 0.8s cubic-bezier(0.38, 0.22, 0, 0.97)
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes inputSlideUp {
+  from {
+    transform: translateY(-600%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
