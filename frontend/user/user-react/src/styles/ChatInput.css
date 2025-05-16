@@ -1,43 +1,59 @@
 .chat-input {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
+  padding-top: 15px;
   background-color: #f0f0f0;
   border-radius: 40px;
   margin: 0 auto;
   width: 80%;
   max-width: 800px;
   flex-wrap: wrap;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-.chat-input textarea {
+/* 입력창 스타일 */
+.input-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-input {
   flex: 1;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 25px;
   border: 1px solid #ccc;
-  margin-right: 10px;
   font-size: 16px;
   background-color: #fff;
   resize: none;
   overflow: hidden;
-  height: 20px;
+  height: 40px;
 }
 
-.chat-input label {
+/* 버튼 줄 스타일 */
+.actions-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.file-button {
   padding-top: 3px;
   padding-left: 15px;
   cursor: pointer;
   margin-right: 10px;
 }
 
-.chat-input button {
+.send-button {
   padding-right: 15px;
   color: black;
   border: none;
   cursor: pointer;
 }
 
-.chat-input button:hover {
+.send-button:hover {
   color: #888;
 }
 
@@ -45,8 +61,9 @@
 .file-list {
   display: flex;
   flex-direction: row;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 /* 개별 파일 스타일 */
@@ -74,7 +91,7 @@
   border: none;
   color: red;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 5px;
 }
 
 .file-remove:hover {

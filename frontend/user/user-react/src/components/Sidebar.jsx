@@ -3,18 +3,7 @@
 import { useState } from "react";
 import '../styles/Sidebar.css';
 
-const Sidebar = ({isOpen, openModal}) => {
-  const [prevChat, setPrevChat] = useState([]); // 이전 대화 목록 저장
-
-  // 새 대화 생성
-  const createNewChat = () => {
-    const newChat = {
-      id: Date.now(), // ID 생성
-      // "YYYY.DD.MM 대화N" 형식의 대화명
-      title: `${new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric' })} 대화${prevChat.length + 1}`,
-    };
-    setPrevChat([newChat, ...prevChat]);
-  }
+const Sidebar = ({isOpen, openModal, prevChat, createNewChat, selectChat}) => {
   
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -27,7 +16,11 @@ const Sidebar = ({isOpen, openModal}) => {
       <div className="conversation-container">
         <ul className="conversation-list">
           {prevChat.map((conversation) => (
-            <li key={conversation.id} className="conversation-item">
+            <li 
+              key={conversation.id} 
+              className="conversation-item"
+              onClick={() => selectChat(conversation.id)} // 🔹 대화 선택 기능 추가
+            >
               {conversation.title} {/* 대화명 출력 */}
             </li>
           ))}
