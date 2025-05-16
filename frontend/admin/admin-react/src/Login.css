@@ -1,0 +1,73 @@
+
+.login-page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    font-family: sans-serif;
+  }
+  
+  .login-left {
+    width: 25%;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    background-color: white;
+  }
+  
+  .login-left h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 0.1rem;
+    text-align: left;
+  }
+  
+  .login-subtext {
+    font-size: 16px;
+    margin-bottom: 2rem;
+  }
+  
+  .login-left input {
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .login-button {
+    background-color: #9a94ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+  
+  .platform-info {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 2rem;
+    text-align: right;
+  }
+  
+  footer {
+    font-size: 12px;
+    margin-top: auto;
+    text-align: center;
+  }
+  
+  footer img {
+    height: 24px;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  .login-right {
+    width: 75%;
+    height: 100%;
+    background: url("./pictures/login/image 1.png") center/cover no-repeat;
+  }

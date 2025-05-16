@@ -15,6 +15,7 @@
     "multer": "^1.4.5-lts.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.3",
     "recharts": "^2.15.1"
   },
   "devDependencies": {
