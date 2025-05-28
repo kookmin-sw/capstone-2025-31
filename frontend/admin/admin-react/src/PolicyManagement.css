@@ -1,0 +1,284 @@
+.policy-management-layout {
+  display: flex;
+  gap: 2rem;
+  background-color: #f8f9fc;
+  padding: 0 2rem 2rem 2rem;
+  align-items: flex-start;
+}
+
+.main-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fc;
+}
+
+.page-header {
+  padding: 2.5rem 2.5rem 0.5rem 2.5rem;
+  margin-bottom: 0;
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0.2;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #573acb;
+  margin-top: 0.2rem;
+}
+
+.rule-list-section {
+  width: 340px;
+  height: 540px;
+  flex-direction: column;
+}
+
+.rule-list-container {
+  background-color: #ededed;
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem 2rem 1.5rem;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+.rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rule-item {
+  margin-bottom: 1rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.checkbox-label input[type="radio"] {
+  display: none;
+}
+
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: white;
+  display: inline-block;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.checkbox-label input[type="radio"]:checked + .custom-radio {
+  background-color: #7f6bfc;
+  border-color: #7f6bfc;
+}
+
+.checkbox-label input[type="radio"]:checked + .custom-radio::after {
+  opacity: 1;
+  background: #fff;
+}
+
+.rule-buttons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rule-buttons-top {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.rule-buttons-top button {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #7f6bfc;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rule-buttons .apply {
+  padding: 0.9rem;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #7f6bfc;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rule-detail-section {
+  flex: 1;
+  background: #ededed;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  height: 527px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule-detail-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.detail-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0rem;
+}
+
+.detail-subtitle {
+  font-size: 16px;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.rule-timestamp {
+  font-size: 14px;
+  color: #666;
+  margin-top: 0rem;
+}
+
+.rule-status-badge-custom {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.3em 0.9em; 
+  margin: 0 0 0 0;
+  width: fit-content;
+  gap: 0.4em;
+}
+
+.rule-status-badge-custom .status-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.rule-status-badge-custom.applied {
+  background: #d2ffd2;
+}
+
+.rule-status-badge-custom.not-applied {
+  background: #ffd2d2;
+}
+
+.rule-meta-row-horizontal {
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.rule-meta-row-horizontal > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rule-meta-label {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 0rem;
+}
+
+.rule-meta-value {
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+}
+
+.rule-body {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #222;
+  white-space: pre-line;
+  margin-top: 0.1rem;
+}
+
+.rule-edit-form {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #222;
+  margin-top: 0.5rem;
+}
+
+.rule-edit-line {
+  margin-bottom: 12px;
+}
+
+.rule-edit-input {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  display: inline-block;
+  width: 90px;
+}
+
+.rule-edit-select {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  display: inline-block;
+  width: 220px;
+}
+
+.save-button-wrapper {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.save-button {
+  width: 100%;
+  display: block;
+  padding: 1rem 0;
+  background-color: #7f6bfc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #7f6bfc;
+}
