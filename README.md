@@ -21,7 +21,18 @@
 
 ### 🛠️ 사용 기술<br><br>
 
-<center> <img src="https://img.shields.io/badge/Python-3376AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"> <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white"> <br> <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><br><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"> </center>
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3376AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white"><br>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><br>
+  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+  <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+</div>
+
 
 ### 🖼️ 홍보 포스터
 
@@ -83,14 +94,22 @@
 **1. 알고리즘 개발 및 연구 수행 내용** <br>
 본 프로젝트를 수행함에 있어 핵심 부분인 **의미론적 유사도 기반 기밀 유출 탐지 기술**을 개발하였습니다. 아래 그림은 의미론적 유사도 기반 기밀 유출 탐지 기술의 전체 아키텍처를 시각화한 자료입니다.
 ![알고리즘 구조도](./README-files/4.png)
+
 우선, 사전에 정의된 기밀 문서를 **단어 기반 Chunking 알고리즘**을 통해 Chunk 단위로 분리하였습니다. 단어 기반 Chunking 알고리즘이란, 아래 그림과 같이 원본 문서를 단어 단위로 분리한 다음, Sliding window 방식으로 Chunk를 나누는 알고리즘입니다. 해당 알고리즘을 통해 의미를 더욱 세분화하여 **정확한 탐지 효과를 보장**하였습니다.
+
 ![Word based chunking](./README-files/5.png)
+
 세분화된 Chunk에 대해 **Sentence-BERT[1]를 통하여 아래 그림과 같이 고정 길이의 고차원 벡터로 변환**하였습니다. 가변 길이의 Chunk에 대해 의미가 반영된 정해진 차원의 벡터로 변환하여 후술할 의미론적 유사도 비교를 수행하였습니다.
+
 ![Embedding Algorithm](./README-files/6.png)
+
 이후에는 Vector Search 알고리즘인 `HNSWlib Vector DB` 를 활용하여 빠른 시간에 높은 정확도로 유사한 Chunk를 탐색할 수 있도록 구성하였습니다.<br>
 이후 성능을 평가하기 위해 **데이터셋을 자체 제작**하였습니다. 원본 데이터셋은 한국어 위키피디아의 랜덤한 주제 문서를 사용하여 제작하였고, 아래 그림과 같이 5단계의 데이터 변형 과정을 거쳐서 변형 데이터셋을 구성하였습니다.
+
 ![데이터 변형](./README-files/7.png)
+
 최종 실험 결과는 아래 그림과 같습니다. 앞서 서술한 바와 같이 **5개의 원본 데이터셋과 개별 5개의 변형 데이터셋, 총 30개의 데이터셋에 대해 유사도 비교를 실시**하였습니다. 가로 축은 단어 단위 Chunking 알고리즘에서 Window Size를 의미합니다. 총 4가지 성능 지표로 Accuracy, Precision, Recall, F1-Score을 추출하였으며 모두 Window Size가 35개 이상일 때부터** 1.0을 유지**하는 것을 확인하였습니다.
+
 ![성능](./README-files/8.png)
 
 ---
